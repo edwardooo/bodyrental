@@ -1,0 +1,83 @@
+<head>
+    <link href="style.css" rel="stylesheet">
+    <title>BODY RENTAL</title>
+</head>
+<body>
+<audio controls autoplay loop>
+    <source src="heartbeat.mp3" type="audio/mp3">
+</audio>
+<script>
+        $(window).scroll(function() {
+
+    if ($(this).scrollTop()>0)
+     {
+        $('#countdown').fadeOut();
+     }
+    else
+     {
+      $('#countdown').fadeIn();
+     }
+ });
+</script>
+
+<div id="background" class="pulseit">
+    <div id='ed'>
+    </div>
+    <div>
+        <div id="countdown">
+        </div>
+    </div>
+</div>
+
+
+<div class="explain">
+    Check your expiration date <a href="https://www.ssa.gov/OACT/population/longevity.html"> HERE</a> 
+</div>
+
+<script>
+    CountDownTimer('07/16/2062 12:00 AM', 'countdown');
+    function CountDownTimer(dt, id)
+    {
+        var end = new Date(dt);
+
+                var _millisecond = 1;
+        var _second = _millisecond * 1000;
+        var _minute = _second * 60;
+        var _hour = _minute * 60;
+        var _day = _hour * 24;
+        var _year = _day * 365;
+        var timer;
+
+        function showRemaining() {
+            var now = new Date();
+            var distance = end - now;
+            if (distance < 0) {
+
+                clearInterval(timer);
+                document.getElementById(id).innerHTML = 'EXPIRED!';
+
+                return;
+            }
+            var years = Math.floor(distance / _year);
+            var days = Math.floor((distance % _year) / _day);
+            var hours = Math.floor((distance % _day) / _hour);
+            hours = ("0" + hours.toString()).slice(-2);
+            var minutes = Math.floor((distance % _hour) / _minute);
+            minutes = ('0' + minutes.toString()).slice(-2);
+            var seconds = Math.floor((distance % _minute) / _second);
+            seconds = ('0' + seconds.toString()).slice(-2);
+            var milliseconds = Math.floor((distance % _second) / _millisecond);
+            milliseconds = ('000' + milliseconds.toString()).slice(-4);
+
+                        document.getElementById(id).innerHTML = years + 'y';
+            document.getElementById(id).innerHTML += days + 'd';
+            document.getElementById(id).innerHTML += hours + 'h';
+            document.getElementById(id).innerHTML += minutes + 'm';
+            document.getElementById(id).innerHTML += seconds + 's';
+            document.getElementById(id).innerHTML += milliseconds + 'ms';
+
+        }
+        timer = setInterval(showRemaining, 2);
+    }
+</script>
+</body>
